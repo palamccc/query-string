@@ -117,12 +117,18 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"tgmD":[function(require,module,exports) {
+})({"XTi8":[function(require,module,exports) {
 'use strict';
 
-module.exports = str => encodeURIComponent(str).replace(/[!'()*]/g, x => "%".concat(x.charCodeAt(0).toString(16).toUpperCase()));
-},{}],"YtoU":[function(require,module,exports) {
+module.exports = function (str) {
+  return encodeURIComponent(str).replace(/[!'()*]/g, function (x) {
+    return "%".concat(x.charCodeAt(0).toString(16).toUpperCase());
+  });
+};
+},{}],"Olf7":[function(require,module,exports) {
 'use strict';
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 var token = '%[a-f0-9]{2}';
 var singleMatcher = new RegExp(token, 'gi');
@@ -164,8 +170,8 @@ function decode(input) {
 function customDecodeURIComponent(input) {
   // Keep track of all the replacements and prefill the map with the `BOM`
   var replaceMap = {
-    '%FE%FF': '\uFFFD\uFFFD',
-    '%FF%FE': '\uFFFD\uFFFD'
+    '%FE%FF': "\uFFFD\uFFFD",
+    '%FF%FE': "\uFFFD\uFFFD"
   };
   var match = multiMatcher.exec(input);
 
@@ -185,7 +191,7 @@ function customDecodeURIComponent(input) {
   } // Add `%C2` at the end of the map to make sure it does not replace the combinator before everything else
 
 
-  replaceMap['%C2'] = '\uFFFD';
+  replaceMap['%C2'] = "\uFFFD";
   var entries = Object.keys(replaceMap);
 
   for (var i = 0; i < entries.length; i++) {
@@ -199,7 +205,7 @@ function customDecodeURIComponent(input) {
 
 module.exports = function (encodedURI) {
   if (typeof encodedURI !== 'string') {
-    throw new TypeError('Expected `encodedURI` to be of type `string`, got `' + typeof encodedURI + '`');
+    throw new TypeError('Expected `encodedURI` to be of type `string`, got `' + _typeof(encodedURI) + '`');
   }
 
   try {
@@ -211,7 +217,7 @@ module.exports = function (encodedURI) {
     return customDecodeURIComponent(encodedURI);
   }
 };
-},{}],"+4SV":[function(require,module,exports) {
+},{}],"DzGE":[function(require,module,exports) {
 'use strict';
 
 module.exports = function (string, separator) {
@@ -252,11 +258,11 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
-var strictUriEncode = require('strict-uri-encode');
+var strictUriEncode = require('./strict-uri-encode');
 
-var decodeComponent = require('decode-uri-component');
+var decodeComponent = require('./decode-uri-component');
 
-var splitOnFirst = require('split-on-first');
+var splitOnFirst = require('./split-on-first');
 
 function encoderForArrayFormat(options) {
   switch (options.arrayFormat) {
@@ -548,4 +554,4 @@ exports.parseUrl = function (input, options) {
     query: parse(extract(input), options)
   };
 };
-},{"strict-uri-encode":"tgmD","decode-uri-component":"YtoU","split-on-first":"+4SV"}]},{},["1AyG"], null)
+},{"./strict-uri-encode":"XTi8","./decode-uri-component":"Olf7","./split-on-first":"DzGE"}]},{},["1AyG"], null)
